@@ -1,0 +1,1 @@
+[[gd, [gb, gc]], [fd, [gb, gd]], [ed, [fd, gb]], [dd, [ed, gb]], [dc, [dd, gb]], [gc, [dc, gb]], [cc, [dc, gc]], [cd, [cc, gc]], [dd, [cd, gc]], [ed, [dd, gc]], [fd, [ed, gc]], [gd, [fd, gc]], [fc, [fd, gd]], [fd, [fc, gd]], [ed, [fc, fd]], [dd, [ed, fc]], [dc, [dd, fc]], [gd, [dc, fc]]]
