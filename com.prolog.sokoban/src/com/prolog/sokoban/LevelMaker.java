@@ -17,7 +17,7 @@ public class LevelMaker {
 
 	private static final char WALKABLE = '%';
 
-	private Level level;
+	Level level;
 
 	public LevelMaker(BufferedReader is) throws IOException {
 		int height = 0;
@@ -51,6 +51,28 @@ public class LevelMaker {
 		}
 
 		level = new Level();
+
+		char l = 'a';
+		char c;
+		for (int i = 0; i < array.length - 1; i++) {
+			c = 'a';
+			for (j = 0; j < array[i].length - 1; j++) {
+				if (array[i][j + 1] == PERSO) {
+					level.perso = new String() + l + c;
+				}
+				if (array[i][j + 1] == CAISSE) {
+					level.caisses += (level.caisses.equals("") ? "" : ",")
+							+ new String() + l + c;
+				}
+				if (array[i][j + 1] == CIBLE) {
+					level.cibles += (level.cibles.equals("") ? "" : ",")
+							+ new String() + l + c;
+				}
+				c++;
+			}
+			l++;
+		}
+
 		// search for movable block and map all "walkable" piece
 		for (int i = 0; i < array.length; i++) {
 			for (j = 0; j < array[i].length; j++) {
@@ -63,8 +85,7 @@ public class LevelMaker {
 		}
 
 		// parse walkable piece, doesn't parse last col, last line
-		char l = 'a';
-		char c;
+		l = 'a';
 		for (int i = 0; i < array.length - 1; i++) {
 			c = 'a';
 			for (j = 0; j < array[i].length - 1; j++) {
@@ -72,7 +93,7 @@ public class LevelMaker {
 					if (array[i + 1][j] == WALKABLE) {
 						// TODO redo
 						level.add(new String() + l + c, new String()
-						+ (char) (l + 1) + c);
+								+ (char) (l + 1) + c);
 					}
 					if (array[i][j + 1] == WALKABLE) {
 						level.add(new String() + l + c, new String() + l
