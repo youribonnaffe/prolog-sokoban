@@ -7,7 +7,16 @@ import java.util.ArrayList;
 public class Level {
 	public static final int SIZE_LIAISON = 2;
 
-	private ArrayList<String[]> liaisons;
+	public static int[] asciiToIntCoord(String coord) {
+		int[] ret = {0,0};
+		if(coord.length()>=2) {
+			ret[0] = coord.charAt(0) - 'a';
+			ret[1] = coord.charAt(1) - 'a';
+		}
+		return ret;
+	}
+	
+	ArrayList<String[]> liaisons;
 	String caisses = "";
 	String perso = "";
 	String cibles = "";
