@@ -93,9 +93,10 @@ public class Prolog {
 		BufferedReader is2 = null;
 		try {
 			is2 = new BufferedReader(new FileReader(output_file));
-			System.out.println(is2.readLine());
-			// expecting .level file output .pl file
-
+			String s = is2.readLine();
+			System.out.println("Solution is : ");
+			System.out.println(new Solution(s));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
