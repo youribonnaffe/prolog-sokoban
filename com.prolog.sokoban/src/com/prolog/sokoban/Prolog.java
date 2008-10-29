@@ -5,6 +5,10 @@ import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.*; 
+import java.awt.*;
+import java.awt.Color;
+
 
 public class Prolog {
 
@@ -28,10 +32,13 @@ public class Prolog {
 		// read level
 		BufferedReader is = null;
 		DataOutputStream os = null;
+                Map map = null;
 		try {
 			is = new BufferedReader(new FileReader(level_file));
 			LevelMaker lm = new LevelMaker(is);
-			System.out.println(lm.level.toString());
+                         map = new Map(level_file);
+			//System.out.println(lm.level.toString());
+                        //System.out.println(map.toString());
 			// expecting .level file output .pl file
 			level_file = level_file.replace(".level", ".pl");
 			os = new DataOutputStream(new FileOutputStream(level_file));
@@ -109,7 +116,9 @@ public class Prolog {
 				}
 		}
 		System.out.println("End !");
-
+                if( map != null){
+                    SokobanGui gui = new SokobanGui(map);
+                }
 	}
 
 }
