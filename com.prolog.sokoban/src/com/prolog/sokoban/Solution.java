@@ -5,21 +5,7 @@ import java.util.Collections;
 import java.util.StringTokenizer;
 
 public class Solution {
-
-	class Step {
-		String perso;
-		ArrayList<String> caisses;
-		public Step(){
-			perso = "";
-			caisses = new ArrayList<String>();
-		}
-		
-		public String toString(){
-			return "[Perso="+perso+" Caisses="+caisses.toString()+"]";
-		}
-	}
-	
-	ArrayList<Step> steps;
+		ArrayList<Step> steps;
 	
 	public Solution (String solution) {
 		
@@ -52,4 +38,12 @@ public class Solution {
 	public String toString(){
 		return steps.toString();
 	}
+        
+        public Step getStep(int i){
+            return steps.get(i);
+        }
+        
+        public int moveCount(){
+            return steps.size();
+        }
 }
