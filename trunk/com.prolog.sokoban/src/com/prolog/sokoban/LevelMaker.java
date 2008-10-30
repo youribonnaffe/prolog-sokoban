@@ -57,14 +57,14 @@ public class LevelMaker {
 		for (int i = 0; i < array.length - 1; i++) {
 			c = 'a';
 			for (j = 0; j < array[i].length - 1; j++) {
-				if (array[i][j + 1] == PERSO) {
+				if (array[i][j] == PERSO) {
 					level.perso = new String() + l + c;
 				}
-				if (array[i][j + 1] == CAISSE) {
+				if (array[i][j] == CAISSE) {
 					level.caisses += (level.caisses.equals("") ? "" : ",")
 							+ new String() + l + c;
 				}
-				if (array[i][j + 1] == CIBLE) {
+				if (array[i][j] == CIBLE) {
 					level.cibles += (level.cibles.equals("") ? "" : ",")
 							+ new String() + l + c;
 				}
