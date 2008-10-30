@@ -5,15 +5,12 @@ import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import javax.swing.*; 
-import java.awt.*;
-import java.awt.Color;
 
 
 public class Prolog {
 
 	static boolean stopProgress = false;
-	public static final int NB_MAX_COUPS = 42;
+	public static final int NB_MAX_COUPS = 10;
 
 	public static void main(String[] args) {
 
@@ -37,7 +34,7 @@ public class Prolog {
 			is = new BufferedReader(new FileReader(level_file));
 			LevelMaker lm = new LevelMaker(is);
                          map = new Map(level_file);
-			//System.out.println(lm.level.toString());
+			System.out.println(lm.level.toString());
                         //System.out.println(map.toString());
 			// expecting .level file output .pl file
 			level_file = level_file.replace(".level", ".pl");
@@ -49,7 +46,7 @@ public class Prolog {
 			
 			// append position caisse, position perso, predicat and co
 			os.writeByte('\n');
-			os.writeBytes("sokoban(ChSol):-sokoban(gd,["+lm.level.caisses+"],["+lm.level.cibles+"],[],"+NB_MAX_COUPS+",ChSol).");
+			os.writeBytes("sokoban(ChSol):-sokoban("+lm.level.perso+",["+lm.level.caisses+"],["+lm.level.cibles+"],[],"+NB_MAX_COUPS+",ChSol).");
 			os.writeByte('\n');
 			os.writeBytes(":- open('"+output_file+"',write,OS), sokoban(ChSol), write(OS,ChSol), halt.");
 			os.writeByte('\n');
@@ -98,11 +95,13 @@ public class Prolog {
 
 		// read solution
 		BufferedReader is2 = null;
+                Solution sol = null;
 		try {
 			is2 = new BufferedReader(new FileReader(output_file));
 			String s = is2.readLine();
 			System.out.println("Solution is : ");
-			System.out.println(new Solution(s));
+                        sol = new Solution(s);
+			System.out.println(sol);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -116,8 +115,8 @@ public class Prolog {
 				}
 		}
 		System.out.println("End !");
-                if( map != null){
-                    SokobanGui gui = new SokobanGui(map);
+                if( map != null && sol != null){
+                    SokobanGui gui = new SokobanGui(map, sol);
                 }
 	}
 

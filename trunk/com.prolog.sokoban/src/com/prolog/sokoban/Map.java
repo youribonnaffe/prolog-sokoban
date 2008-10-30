@@ -2,8 +2,6 @@ package com.prolog.sokoban;
 
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,8 +20,8 @@ public class Map {
     
         
     private ArrayList<ArrayList<Integer>> cases;
-    private int persoX;
-    private int persoY;
+    private Integer persoX;
+    private Integer persoY;
     
     
     
@@ -41,7 +39,7 @@ public class Map {
                             switch(s.charAt(i)){
                                 case LevelMaker.CAISSE:   cases.get(cases.size()-1).add(CAISSE); break;
                                 case LevelMaker.CIBLE:   cases.get(cases.size()-1).add(CIBLE); break;
-                                case LevelMaker.PERSO:   cases.get(cases.size()-1).add(PERSO);  persoX = i; persoY = cases.size()-1; break;
+                                case LevelMaker.PERSO:   cases.get(cases.size()-1).add(PERSO);  persoY = i; persoX = cases.size()-1; break;
                                 case LevelMaker.MUR:   cases.get(cases.size()-1).add(MUR); break;
                                 case LevelMaker.VIDE:   cases.get(cases.size()-1).add(VIDE); break;
                                 default: cases.get(cases.size()).add(MUR); break;
@@ -71,6 +69,36 @@ public class Map {
     
     public ArrayList<ArrayList<Integer>> getCases(){
         return cases;
+    }
+    
+    public void getPerso(int x, int y){
+        x = persoX;
+        y = persoY;
+    }
+    
+    public void setPerso(int x, int y){
+        persoX = x;
+        persoY = y;
+    }
+    
+    public void update(Step move){
+        //move perso
+        int oldX = persoX.intValue();
+        int oldY = persoY.intValue();
+        persoX = stringToInt(move.perso.charAt(0));
+        persoY = stringToInt(move.perso.charAt(1));
+        cases.get(oldX).set(oldY, VIDE);
+        cases.get(persoX.intValue()).set(persoY.intValue(), PERSO);
+        //move each barrel
+        for(int i =0; i<move.getCaisses().size();i++){
+            int x = stringToInt(move.getCaisses().get(i).charAt(0));
+            int y = stringToInt(move.getCaisses().get(i).charAt(1));
+            cases.get(x).set(y, CAISSE);
+        }
+    }
+    
+    private int stringToInt(char c){
+           return (c-'a');
     }
             
 }

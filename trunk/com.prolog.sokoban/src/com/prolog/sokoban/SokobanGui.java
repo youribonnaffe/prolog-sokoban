@@ -14,15 +14,15 @@ import javax.swing.JFrame;
  */
 public class SokobanGui{ 
     
-    public SokobanGui(Map map){    
-        JFrame frame = new JFrame("HelloWorldSwing");
+    public SokobanGui(Map map, Solution sol){    
+        JFrame frame = new JFrame("Sokoban Solver");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setBounds(200, 100, 500, 500);
 
         //Display the window.
-        frame.pack();
-        MapWidget mapWid = new MapWidget(map);
+        MapWidget mapWid = new MapWidget(map, sol);
         frame.getContentPane().add(mapWid);
+        frame.pack();
         frame.setVisible(true);
         
     }
