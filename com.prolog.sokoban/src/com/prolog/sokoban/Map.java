@@ -17,6 +17,8 @@ public class Map {
     public static final int PERSO = 3;
     public static final int MUR = 4;
     public static final int VIDE = 5;
+    public static final int CAISSECIBLE = 6;
+    public static final int PERSOCIBLE = 7;
     
         
     private ArrayList<ArrayList<Integer>> cases;
@@ -87,13 +89,32 @@ public class Map {
         int oldY = persoY.intValue();
         persoX = stringToInt(move.perso.charAt(0));
         persoY = stringToInt(move.perso.charAt(1));
-        cases.get(oldX).set(oldY, VIDE);
-        cases.get(persoX.intValue()).set(persoY.intValue(), PERSO);
+        
+        /*we do this: PERSOCIBLE, CAISSECIBLE,... in order to retrieve the cible when the caisse is on it*/
+        if( cases.get(oldX).get(oldY) == PERSOCIBLE){
+            cases.get(oldX).set(oldY, CIBLE);
+        }
+        else{
+            cases.get(oldX).set(oldY, VIDE);
+        }
+        if(cases.get(persoX).get(persoY) == CAISSECIBLE){
+            cases.get(persoX.intValue()).set(persoY.intValue(), PERSOCIBLE);
+        }
+        else{
+            cases.get(persoX.intValue()).set(persoY.intValue(), PERSO);
+        }
+        
         //move each barrel
         for(int i =0; i<move.getCaisses().size();i++){
             int x = stringToInt(move.getCaisses().get(i).charAt(0));
             int y = stringToInt(move.getCaisses().get(i).charAt(1));
-            cases.get(x).set(y, CAISSE);
+            if(cases.get(x).get(y) == CIBLE || cases.get(x).get(y) == CAISSECIBLE){
+                cases.get(x).set(y, CAISSECIBLE);
+            }
+            else{
+                cases.get(x).set(y, CAISSE);
+            }    
+                
         }
     }
     
