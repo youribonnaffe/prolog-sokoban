@@ -42,9 +42,15 @@ public class MapWidget extends Canvas implements MouseListener{
                     g.drawImage(imgMur, j*TAILLE_IMG, i*TAILLE_IMG, TAILLE_IMG,TAILLE_IMG, this);
                 } else if(map.getCases().get(i).get(j) == Map.CAISSE){
                     g.drawImage(imgCaisse, j*TAILLE_IMG, i*TAILLE_IMG, TAILLE_IMG,TAILLE_IMG, this);
-                } else if(map.getCases().get(i).get(j) == Map.CIBLE){
+                }else if(map.getCases().get(i).get(j) == Map.CAISSECIBLE){
+                    g.drawImage(imgCaisse, j*TAILLE_IMG, i*TAILLE_IMG, TAILLE_IMG,TAILLE_IMG, this);
                     g.drawImage(imgCible, j*TAILLE_IMG, i*TAILLE_IMG, TAILLE_IMG,TAILLE_IMG, this);
-                } else if(map.getCases().get(i).get(j) == Map.PERSO){
+                }else if(map.getCases().get(i).get(j) == Map.CIBLE){
+                    g.drawImage(imgCible, j*TAILLE_IMG, i*TAILLE_IMG, TAILLE_IMG,TAILLE_IMG, this);
+                } else if( map.getCases().get(i).get(j) == Map.PERSO){
+                    g.drawImage(imgPerso, j*TAILLE_IMG, i*TAILLE_IMG, TAILLE_IMG,TAILLE_IMG, this);
+                } else if( map.getCases().get(i).get(j) == Map.PERSOCIBLE){
+                    g.drawImage(imgCible, j*TAILLE_IMG, i*TAILLE_IMG, TAILLE_IMG,TAILLE_IMG, this);
                     g.drawImage(imgPerso, j*TAILLE_IMG, i*TAILLE_IMG, TAILLE_IMG,TAILLE_IMG, this);
                 }
                      
