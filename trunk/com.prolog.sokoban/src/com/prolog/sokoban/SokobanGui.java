@@ -22,8 +22,8 @@ public class SokobanGui{
         //Display the window.
         MapWidget mapWid = new MapWidget(map, sol);
         frame.getContentPane().add(mapWid);
-        frame.pack();
         frame.setVisible(true);
+        frame.pack();
         
     }
 }

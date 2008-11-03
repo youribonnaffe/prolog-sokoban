@@ -60,7 +60,7 @@ public class MapWidget extends Canvas implements MouseListener{
             
     
     public void mousePressed(MouseEvent e) {
-        if( currentSol < sol.moveCount()-1){
+        if( currentSol < sol.moveCount()){
             System.out.println(sol.getStep(currentSol).toString());
             map.update(sol.getStep(currentSol));
             repaint();
