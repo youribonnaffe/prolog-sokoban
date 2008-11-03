@@ -1,0 +1,10 @@
+dir="com/prolog/sokoban/"
+name="sokoban"
+file="$dir$name$1.level"
+if [ ! -e $file ]; then
+	echo "Fichier $file inexistant.";
+	exit -1;
+fi
+
+cp $file "$dir$name.level"
+java com.prolog.sokoban.Prolog /usr/bin/pl com/prolog/sokoban/sokobanLarg.pl solution com/prolog/sokoban/sokoban.level
