@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Prolog {
 
 	static boolean stopProgress = false;
-	public static final int NB_MAX_COUPS = 10;
+	public static final int NB_MAX_COUPS = 20;
 
 	public static void main(String[] args) {
 
